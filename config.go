@@ -1,39 +1,50 @@
 package main
 
 import (
+	"encoding/json"
 	"os"
-
-	"gopkg.in/yaml.v3"
 )
 
 type Config struct {
-	Setups map[string]struct {
-		Name   string
-		Groups map[string]string
-	}
-	Groups map[string]struct {
-		Name    string
-		Dynamic []struct {
-			Setting  string
-			Behavior string
-			From     int
-			To       int
-			Step     int
-			EC       Encoder
-			PB       PushButton
-		}
-		Static map[string]struct {
-			EC Encoder
-			PB PushButton
-		}
-	}
+	Setups []Setup
+}
+
+type Setup struct {
+	Name   string
+	Groups []Group
+}
+
+type Group struct {
+	Name     string
+	Settings []Setting
+}
+
+type Setting struct {
+	EC Encoder
+	PB PushButton
+}
+
+type Encoder struct {
+	Channel int
+	Number  int
+	Lower   int
+	Upper   int
+	Display string
+	Type    string
+	Mode    string
+}
+
+type PushButton struct {
+	Channel int
+	Number  int
+	Lower   int
+	Upper   int
+	Display string
+	Type    string
+	Mode    string
 }
 
 func parseConfig() (cfg Config, err error) {
-	yamlFile, err := os.ReadFile("ec4.yaml")
-	if err != nil {
-		return
-	}
-	err = yaml.Unmarshal(yamlFile, &cfg)
+	err = json.NewDecoder(os.Stdin).Decode(&cfg)
 	return
 }

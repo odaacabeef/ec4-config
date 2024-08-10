@@ -5,37 +5,6 @@ import (
 	"log"
 )
 
-type Setup struct {
-	Name   string
-	Groups map[string]Group
-}
-
-type Group struct {
-	Name        string
-	Encoders    map[string]Encoder
-	PushButtons map[string]PushButton
-}
-
-type Encoder struct {
-	Channel int
-	Number  int
-	Lower   int
-	Upper   int
-	Display string
-	Type    string
-	Mode    string
-}
-
-type PushButton struct {
-	Channel int
-	Number  int
-	Lower   int
-	Upper   int
-	Display string
-	Type    string
-	Mode    string
-}
-
 func main() {
 
 	cfg, err := parseConfig()
