@@ -1,9 +1,16 @@
 package main
 
 import (
-	"encoding/json"
+	"io"
 	"os"
+
+	_ "embed"
+
+	"cuelang.org/go/cue/cuecontext"
 )
+
+//go:embed schema.cue
+var schemaSource string
 
 type Config struct {
 	Setups []Setup
@@ -45,6 +52,13 @@ type PushButton struct {
 }
 
 func parseConfig() (cfg Config, err error) {
-	err = json.NewDecoder(os.Stdin).Decode(&cfg)
+	stdin, err := io.ReadAll(os.Stdin)
+	if err != nil {
+		return
+	}
+	ctx := cuecontext.New()
+	s := ctx.CompileString(schemaSource)
+	c := ctx.CompileBytes(stdin)
+	err = s.Unify(c).Decode(&cfg)
 	return
 }
