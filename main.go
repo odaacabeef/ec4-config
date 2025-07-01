@@ -3,7 +3,6 @@ package main
 import (
 	"fmt"
 	"log"
-	"os"
 )
 
 func main() {
@@ -25,11 +24,11 @@ func main() {
 	// Print sysex message
 	PrintSysexHex(sysex)
 
-	// Write sysex to file
-	err = os.WriteFile("ec4-config.syx", sysex, 0644)
+	// Send sysex via MIDI
+	err = SendSysexToDevice(sysex)
 	if err != nil {
-		log.Fatal("Failed to write sysex file:", err)
+		log.Fatal("Failed to send sysex via MIDI:", err)
 	}
 
-	fmt.Println("Sysex message written to ec4-config.syx")
+	fmt.Println("Configuration sent to Faderfox EC4 successfully!")
 }
