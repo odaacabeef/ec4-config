@@ -16,8 +16,9 @@ _#group: {
 }
 
 _#setting: {
-	ec: _#encoder
-	pb: _#pushButton
+	name: _#name
+	ec:   _#encoder
+	pb:   _#pushButton
 }
 
 _#encoder: {

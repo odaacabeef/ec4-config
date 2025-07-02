@@ -386,7 +386,7 @@ func (sg *SysexGenerator) generateGroupDataPart(group *Group, part int) []byte {
 		for i := 0; i < 16; i++ {
 			if i < len(group.Settings) {
 				setting := group.Settings[i]
-				name := setting.EC.Display
+				name := setting.Name
 
 				// Pad or truncate to 4 characters
 				if len(name) > 4 {
