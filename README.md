@@ -1,6 +1,6 @@
 # EC4 Config
 
-_:warning: WORK IN PROGRESS - this cannot actually configure an EC4 yet :warning:_
+_:warning: WORK IN PROGRESS - there's some bugs to work out :warning:_
 
 Configuration as code for the [Faderfox EC4](https://faderfox.de/ec4.html).
 
@@ -41,4 +41,5 @@ jsonnet config.jsonnet | cue vet schema.cue -
 
 ### Example
 
-I maintain my own configuration here: https://gist.github.com/trotttrotttrott/fc4a74d8bd7d395cbf82431c467b77ef
+I maintain my own configuration in this repo: [config.jsonnet](config.jsonnet).
+Send it to an EC4 with `make send`.
