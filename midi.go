@@ -51,7 +51,7 @@ func NewMIDISender(portName string) (*MIDISender, error) {
 // SendSysex sends a sysex message to the connected device
 func (ms *MIDISender) SendSysex(sysexData []byte) error {
 	// Create sysex message
-	msg := midi.SysEx(sysexData)
+	msg := midi.Message(sysexData)
 
 	// Send the message
 	if err := ms.out.Send(msg); err != nil {
