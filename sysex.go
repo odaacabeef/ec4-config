@@ -163,8 +163,8 @@ func (sg *SysexGenerator) generatePushButtonKey1Data(group *Group) []byte {
 		if i < len(group.Settings) {
 			setting := group.Settings[i]
 
-			// Convert push button type to mode
-			mode := sg.convertPushButtonTypeToMode(setting.PB.Type)
+			// Convert push button mode
+			mode := sg.convertPushButtonTypeToMode(setting.PB.Mode)
 
 			// Command number (0-127)
 			command := setting.PB.Number
@@ -625,9 +625,9 @@ func (sg *SysexGenerator) convertPushButtonType(typeStr string) int {
 	switch typeStr {
 	case "Off":
 		return 0
-	case "CC":
+	case "Note":
 		return 1
-	case "Key":
+	case "CC":
 		return 2
 	case "PrgC":
 		return 3
@@ -635,63 +635,31 @@ func (sg *SysexGenerator) convertPushButtonType(typeStr string) int {
 		return 4
 	case "AftT":
 		return 5
-	case "Note":
-		return 6
-	case "NRPN":
-		return 7
-	case "Acc0":
-		return 8
-	case "Acc3":
-		return 9
-	case "LSp6":
-		return 10
-	case "Min":
-		return 11
-	case "Max":
-		return 12
 	case "Grp":
-		return 13
+		return 6
 	case "Set":
-		return 14
+		return 7
+	case "Acc3":
+		return 8
+	case "LSp6":
+		return 9
+	case "Min":
+		return 10
+	case "Max":
+		return 11
 	default:
-		return 1 // Default to CC
+		return 2 // Default to CC
 	}
 }
 
-func (sg *SysexGenerator) convertPushButtonTypeToMode(typeStr string) int {
-	switch typeStr {
-	case "Off":
-		return 0
-	case "CC":
-		return 1
+func (sg *SysexGenerator) convertPushButtonTypeToMode(modeStr string) int {
+	switch modeStr {
 	case "Key":
-		return 2
-	case "PrgC":
-		return 3
-	case "PBnd":
-		return 4
-	case "AftT":
-		return 5
-	case "Note":
-		return 6
-	case "NRPN":
-		return 7
-	case "Acc0":
-		return 8
-	case "Acc3":
-		return 9
-	case "LSp6":
-		return 10
-	case "Min":
-		return 11
-	case "Max":
-		return 12
-	case "Grp":
-		return 13
-	case "Set":
-		return 14
+		return 0
+	case "Togl":
+		return 1
 	default:
-		return 1 // Default to CC
+		return 0 // Default to Key
 	}
 }
 
