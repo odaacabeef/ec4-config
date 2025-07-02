@@ -21,9 +21,6 @@ func main() {
 		log.Fatal("Failed to generate sysex:", err)
 	}
 
-	// Print sysex message
-	PrintSysexHex(sysex)
-
 	// Send sysex via MIDI
 	err = SendSysexToDevice(sysex)
 	if err != nil {

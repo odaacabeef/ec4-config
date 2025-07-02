@@ -1,8 +1,6 @@
 package main
 
 import (
-	"encoding/hex"
-	"fmt"
 	"strings"
 )
 
@@ -661,11 +659,4 @@ func (sg *SysexGenerator) convertPushButtonTypeToMode(modeStr string) int {
 	default:
 		return 0 // Default to Key
 	}
-}
-
-// PrintSysexHex prints the sysex message in hex format
-func PrintSysexHex(sysex []byte) {
-	fmt.Println("Sysex message:")
-	fmt.Println(hex.EncodeToString(sysex))
-	fmt.Printf("Length: %d bytes\n", len(sysex))
 }
