@@ -27,8 +27,9 @@ type Group struct {
 }
 
 type Setting struct {
-	EC Encoder
-	PB PushButton
+	Name string
+	EC   Encoder
+	PB   PushButton
 }
 
 type Encoder struct {

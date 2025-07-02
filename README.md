@@ -1,15 +1,14 @@
 # EC4 Config
 
-_:warning: WORK IN PROGRESS - this cannot actually configure an EC4 yet :warning:_
-
 Configuration as code for the [Faderfox EC4](https://faderfox.de/ec4.html).
 
 ## Usage
 
-Your configuration must be piped to `stdin` as JSON. The expectation is that
-configuration would be maintained with something like
+Your configuration must be piped to `stdin` as JSON.
+
+_The expectation is that configuration would be maintained with something like
 [Jsonnet](https://jsonnet.org/), [Cue](https://cuelang.org/), or anything that
-can produce JSON.
+can produce JSON._
 
 ```sh
 cat config.json | go run .
@@ -23,8 +22,8 @@ jsonnet config.jsonnet | go run .
 
 ## Configuration
 
-Configuration is unified and validated with [schema.cue](schema.cue). This file
-dictates object structure, field constraints, and default values.
+Configuration is validated with [schema.cue](schema.cue). This file dictates
+object structure, field constraints, and also sets default values.
 
 When developing your configuration, the `cue vet` command is helpful for
 determining if validation will pass.
@@ -41,4 +40,5 @@ jsonnet config.jsonnet | cue vet schema.cue -
 
 ### Example
 
-I maintain my own configuration here: https://gist.github.com/trotttrotttrott/fc4a74d8bd7d395cbf82431c467b77ef
+I maintain my own configuration in [config.jsonnet](config.jsonnet). Send it to
+an EC4 with `jsonnet config.jsonnet | go run .`.
