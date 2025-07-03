@@ -5,7 +5,7 @@
 [Globals]
 # The primary MIDI channel that the controller uses in
 # the range of 0-15.
-GlobalChannel: 0
+GlobalChannel: 13
 
 # ======================================================
 # Control Settings Information
