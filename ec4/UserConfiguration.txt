@@ -5,7 +5,7 @@
 [Globals]
 # The primary MIDI channel that the controller uses in
 # the range of 0-15.
-GlobalChannel: 13
+GlobalChannel: 12
 
 # ======================================================
 # Control Settings Information
@@ -177,14 +177,15 @@ LockButton: -1
 # features of 8 Tracks at a time.
 
 # VolumeSlider1-VolumeSlider8 control Track volume.
-VolumeSlider1: 40
-VolumeSlider2: 41
-VolumeSlider3: 42
-VolumeSlider4: 43
-VolumeSlider5: 44
-VolumeSlider6: 45
-VolumeSlider7: 46
-VolumeSlider8: 47
+VolumeSlider1: 0
+VolumeSlider2: 1
+VolumeSlider3: 2
+VolumeSlider4: 3
+VolumeSlider5: 4
+VolumeSlider6: 5
+VolumeSlider7: 6
+VolumeSlider8: 7
+
 Slider1Channel: -1
 Slider2Channel: -1
 Slider3Channel: -1
@@ -215,14 +216,14 @@ Send2Knob7: -1
 Send2Knob8: -1
 
 # TrackMuteButton1-TrackMuteButton8 control Track muting.
-TrackMuteButton1: -1
-TrackMuteButton2: -1
-TrackMuteButton3: -1
-TrackMuteButton4: -1
-TrackMuteButton5: -1
-TrackMuteButton6: -1
-TrackMuteButton7: -1
-TrackMuteButton8: -1
+TrackMuteButton1: 64
+TrackMuteButton2: 65
+TrackMuteButton3: 66
+TrackMuteButton4: 67
+TrackMuteButton5: 68
+TrackMuteButton6: 69
+TrackMuteButton7: 70
+TrackMuteButton8: 71
 
 # InvertMuteButtonFeedback specifies whether feedback sent
 # to TrackMuteButtons will be inverted (True) or not (False).
