@@ -41,4 +41,11 @@ jsonnet config.jsonnet | cue vet schema.cue -
 ### Example
 
 I maintain my own configuration in [config.jsonnet](config.jsonnet). Send it to
-an EC4 with `jsonnet config.jsonnet | go run .`.
+an EC4 with `make send`.
+
+### Ableton Live
+
+[ec4](./ec4) contains a remote script that is intended to work with the above
+configuration. See documentation for installation:
+
+https://help.ableton.com/hc/en-us/articles/209072009-Installing-third-party-remote-scripts
