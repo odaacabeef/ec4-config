@@ -1,4 +1,4 @@
-local es9Mixer(from) = [
+local es9Pan(from) = [
 
   // The ES-9 has an internal 8x8 mixer. I use the EC4 to control pan for the
   // mixes that pertain to my main and headphones output.
@@ -31,6 +31,36 @@ local es9Mixer(from) = [
   for i in std.range(from, from + 7)
 ];
 
+local liveVolume(from) = [
+
+  // Ableton Live volume slider control
+
+  {
+
+    name: 'v%02d' % (i - from + 1),
+
+    ec: {
+      channel: 13,
+      number: i,
+      lower: 0,
+      upper: 127,
+      display: '127',
+      type: 'CCAb',
+      mode: 'Acc3',
+    },
+    pb: {
+      channel: 13,
+      number: i + 64,
+      lower: 0,
+      upper: 1,
+      display: 'Off',
+      type: 'CC',
+      mode: 'Key',
+    },
+  }
+  for i in std.range(from, from + 15)
+];
+
 local emptyGroup = {
 
   // List of 16 empty objects to account for the groups I don't use.
@@ -45,35 +75,64 @@ local emptyGroup = {
 
 {
   setups: [
+
+    // Setup 1 is for an es-9...
     {
-      name: 'mdlr',
+      name: 'es-9',
       groups: [
         {
           name: 'phon',
-          settings: es9Mixer(24) + es9Mixer(88),
+          settings: es9Pan(24) + es9Pan(88),
         },
         {
           name: 'main',
-          settings: es9Mixer(8) + es9Mixer(72),
+          settings: es9Pan(8) + es9Pan(72),
         },
       ] + [
 
-        // Fill in the other 14 groups of the first setup.
-
+        // Groups 3 to 16 are empty...
         emptyGroup
         for i in std.range(3, 16)
       ],
     },
   ] + [
 
-    // Fill in the other 15 setups.
-
+    // Setups 2 to 12 are empty...
     {
       groups: [
         emptyGroup
         for i in std.range(1, 16)
       ],
     }
-    for i in std.range(2, 16)
+    for i in std.range(2, 12)
+  ] + [
+
+    // Setup 13 is for Live...
+    {
+      name: 'live',
+      groups: [
+        {
+          // Volume: 0-15
+          // Mute: 64-79
+          name: 'v+m',
+          settings: liveVolume(0),
+        },
+      ] + [
+
+        // Groups 2 to 16 are empty...
+        emptyGroup
+        for i in std.range(2, 16)
+      ],
+    },
+  ] + [
+
+    // Setups 14 to 16 are empty...
+    {
+      groups: [
+        emptyGroup
+        for i in std.range(1, 16)
+      ],
+    }
+    for i in std.range(14, 16)
   ],
 }
