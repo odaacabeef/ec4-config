@@ -33,12 +33,13 @@ local es9Pan(from) = [
 
 local liveVolume(from) = [
 
-  // Ableton Live volume slider control
+  // Ableton Live track volume control
 
   {
 
-    name: 'v%02d' % (i - from + 1),
+    name: '  %02d' % (i + 1),
 
+    // encoders control volume sliders
     ec: {
       channel: 13,
       number: i,
@@ -48,6 +49,8 @@ local liveVolume(from) = [
       type: 'CCAb',
       mode: 'Acc3',
     },
+
+    // push buttons toggle mute
     pb: {
       channel: 13,
       number: i + 64,
@@ -55,7 +58,7 @@ local liveVolume(from) = [
       upper: 1,
       display: 'Off',
       type: 'CC',
-      mode: 'Key',
+      mode: 'Togl',
     },
   }
   for i in std.range(from, from + 15)
@@ -112,16 +115,30 @@ local emptyGroup = {
       name: 'live',
       groups: [
         {
-          // Volume: 0-15
-          // Mute: 64-79
-          name: 'v+m',
+          // 1-16
+          name: '->16',
           settings: liveVolume(0),
+        },
+        {
+          // 17-32
+          name: '->32',
+          settings: liveVolume(16),
+        },
+        {
+          // 33-48
+          name: '->48',
+          settings: liveVolume(32),
+        },
+        {
+          // 49-64
+          name: '->64',
+          settings: liveVolume(48),
         },
       ] + [
 
-        // Groups 2 to 16 are empty...
+        // Groups 5 to 16 are empty...
         emptyGroup
-        for i in std.range(2, 16)
+        for i in std.range(5, 16)
       ],
     },
   ] + [
