@@ -12,7 +12,6 @@ func main() {
 	}
 
 	fmt.Println("Configuration loaded successfully")
-	fmt.Printf("Found %d setups\n", len(cfg.Setups))
 
 	// Generate sysex message
 	generator := NewSysexGenerator(cfg)
@@ -27,5 +26,5 @@ func main() {
 		log.Fatal("Failed to send sysex via MIDI:", err)
 	}
 
-	fmt.Println("Configuration sent to Faderfox EC4 successfully!")
+	fmt.Println("Sysex message sent successfully!")
 }

@@ -90,6 +90,5 @@ func SendSysexToDevice(sysexData []byte) error {
 		return fmt.Errorf("failed to send sysex: %w", err)
 	}
 
-	fmt.Println("Sysex message sent successfully!")
 	return nil
 }
