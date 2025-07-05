@@ -6,13 +6,13 @@ Configuration as code for the [Faderfox EC4](https://faderfox.de/ec4.html).
 
 Your configuration must be piped to `stdin` as JSON.
 
-_The expectation is that configuration would be maintained with something like
-[Jsonnet](https://jsonnet.org/), [Cue](https://cuelang.org/), or anything that
-can produce JSON._
-
 ```sh
 cat config.json | go run .
 ```
+
+The expectation is that configuration would be maintained with something like
+[Jsonnet](https://jsonnet.org/), [Cue](https://cuelang.org/), or anything that
+can produce JSON.
 
 If you're using Jsonnet:
 
@@ -45,7 +45,8 @@ an EC4 with `make send`.
 
 ### Ableton Live
 
-[ec4](./ec4) contains a remote script that is intended to work with the above
-configuration. See documentation for installation:
+[live](./live) contains a remote script that is intended to work with the above
+configuration.
 
-https://help.ableton.com/hc/en-us/articles/209072009-Installing-third-party-remote-scripts
+See [documentation](https://help.ableton.com/hc/en-us/articles/209072009-Installing-third-party-remote-scripts)
+for installation info. `make live-symlink` should do the trick.
