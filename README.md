@@ -10,6 +10,10 @@ Your configuration must be piped to `stdin` as JSON.
 cat config.json | go run .
 ```
 
+The program will assemble a sysex message and send it to a MIDI out port named
+"Faderfox EC4". On your EC4, go to Setup -> Receive before sending. Your EC4
+should be connected via USB. Sending over TRS MIDI doesn't seem to work.
+
 The expectation is that configuration would be maintained with something like
 [Jsonnet](https://jsonnet.org/), [Cue](https://cuelang.org/), or anything that
 can produce JSON.
