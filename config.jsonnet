@@ -31,6 +31,38 @@ local es9Pan(from) = [
   for i in std.range(from, from + 7)
 ];
 
+local sevenPC(from) = [
+
+  // Program change messages for a Crumar Seven
+
+  {
+
+    name: '  %02d' % (i + 1),
+
+    // encoders control volume
+    ec: {
+      channel: 1,
+      number: 7,
+      lower: 0,
+      upper: 127,
+      display: '127',
+      type: 'CCAb',
+      mode: 'Acc1',
+    },
+
+    // push buttons send program change message
+    pb: {
+      channel: 1,
+      lower: i,
+      upper: i,
+      display: 'Off',
+      type: 'PrgC',
+      mode: 'Key',
+    },
+  }
+  for i in std.range(from, from + 15)
+];
+
 local liveVolume(from) = [
 
   // Ableton Live track volume control
@@ -100,14 +132,45 @@ local emptyGroup = {
     },
   ] + [
 
-    // Setups 2 to 12 are empty...
+    // Setups 2 to 4 are empty...
     {
       groups: [
         emptyGroup
         for i in std.range(1, 16)
       ],
     }
-    for i in std.range(2, 12)
+    for i in std.range(2, 4)
+  ] + [
+
+    // Setup 6 is for a crumar seven...
+    {
+      name: 'sevn',
+      groups: [
+        {
+          name: '->16',
+          settings: sevenPC(0),
+        },
+        {
+          name: '->32',
+          settings: sevenPC(16),
+        },
+      ] + [
+
+        // Groups 3 to 16 are empty...
+        emptyGroup
+        for i in std.range(3, 16)
+      ],
+    },
+  ] + [
+
+    // Setups 6 to 12 are empty...
+    {
+      groups: [
+        emptyGroup
+        for i in std.range(1, 16)
+      ],
+    }
+    for i in std.range(6, 12)
   ] + [
 
     // Setup 13 is for Live...
